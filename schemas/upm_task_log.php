@@ -1,0 +1,173 @@
+<?php
+/**
+ * Copy Right IJH.CC
+ * Each engineer has a duty to keep the code elegant
+ * $Id$
+ */
+
+if(!defined('__CORE_DIR')){
+    exit("Access Denied");
+}
+
+return array (
+  'log_id' => 
+  array (
+    'field' => 'log_id',
+    'label' => 'ID',
+    'pk' => true,
+    'add' => false,
+    'edit' => false,
+    'html' => false,
+    'empty' => false,
+    'show' => false,
+    'list' => true,
+    'type' => 'int',
+    'comment' => '',
+    'default' => '',
+    'SO' => '=',
+  ),
+  'company_id' => 
+  array (
+    'field' => 'company_id',
+    'label' => '任务ID',
+    'pk' => false,
+    'add' => true,
+    'edit' => false,
+    'html' => false,
+    'empty' => false,
+    'show' => false,
+    'list' => true,
+    'type' => 'int',
+    'comment' => '任务ID',
+    'default' => '',
+    'SO' => '=',
+  ),
+  'sale_id' => 
+  array (
+    'field' => 'sale_id',
+    'label' => '推广员ID',
+    'pk' => false,
+    'add' => true,
+    'edit' => false,
+    'html' => false,
+    'empty' => false,
+    'show' => false,
+    'list' => true,
+    'type' => 'int',
+    'comment' => '推广员ID',
+    'default' => '',
+    'SO' => '=',
+  ),
+  'pmid' => 
+  array (
+    'field' => 'pmid',
+    'label' => '推广代码',
+    'pk' => false,
+    'add' => true,
+    'edit' => false,
+    'html' => false,
+    'empty' => false,
+    'show' => false,
+    'list' => true,
+    'type' => 'text',
+    'comment' => '推广代码',
+    'default' => '',
+    'SO' => '=',
+  ),
+  'yuyue_id' => 
+  array (
+    'field' => 'yuyue_id',
+    'label' => '预约ID',
+    'pk' => false,
+    'add' => true,
+    'edit' => true,
+    'html' => false,
+    'empty' => true,
+    'show' => false,
+    'list' => true,
+    'type' => 'int',
+    'comment' => '',
+    'default' => '',
+    'SO' => '=',
+  ),
+  'yuyue_status' => 
+  array (
+    'field' => 'yuyue_status',
+    'label' => '预约状态',
+    'pk' => false,
+    'add' => true,
+    'edit' => true,
+    'html' => false,
+    'empty' => true,
+    'show' => false,
+    'list' => true,
+    'type' => 'int',
+    'comment' => '1:有效,2:量房,3:签单',
+    'default' => '',
+    'SO' => '=',
+  ),
+  'wx_openid' => 
+  array (
+    'field' => 'wx_openid',
+    'label' => '微信OPENID',
+    'pk' => false,
+    'add' => true,
+    'edit' => true,
+    'html' => false,
+    'empty' => true,
+    'show' => false,
+    'list' => false,
+    'type' => 'text',
+    'comment' => '',
+    'default' => '',
+    'SO' => false,
+  ),
+  'hash' => 
+  array (
+    'field' => 'hash',
+    'label' => 'hash',
+    'pk' => false,
+    'add' => true,
+    'edit' => true,
+    'html' => false,
+    'empty' => false,
+    'show' => false,
+    'list' => false,
+    'type' => 'text',
+    'comment' => 'ip+task+pmid的hash值',
+    'default' => '',
+    'SO' => false,
+  ),
+  'clientip' => 
+  array (
+    'field' => 'clientip',
+    'label' => '访问IP',
+    'pk' => false,
+    'add' => false,
+    'edit' => true,
+    'html' => false,
+    'empty' => false,
+    'show' => false,
+    'list' => true,
+    'type' => 'clientip',
+    'comment' => '',
+    'default' => '',
+    'SO' => false,
+  ),
+  'dateline' => 
+  array (
+    'field' => 'dateline',
+    'label' => '访问时间',
+    'pk' => false,
+    'add' => false,
+    'edit' => false,
+    'html' => false,
+    'empty' => false,
+    'show' => false,
+    'list' => true,
+    'type' => 'dateline',
+    'comment' => '',
+    'default' => '',
+    'SO' => 'betweendate',
+  ),
+);

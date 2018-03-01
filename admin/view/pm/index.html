@@ -1,0 +1,56 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+	<table width="100%" align="center" cellpadding="0" cellspacing="0">
+		<tbody><tr>
+			<td width="30" align="right"><img src="http://hf.v6.jhcms.cn/admin/images/main-h5-ico.gif" alt=""></td>
+			<th>项目列表</th>
+			<td align="right">
+                <a href="?pm/index-addpm.html" ini-width="450" class="button" title="添加项目">添加项目</a>
+                <a href="?trade/order-so.html" mini-load="搜索商城订单" mini-width="450" class="button" title="搜索">搜索</a></td>
+			<td width="15"></td>
+		</tr>
+	</tbody></table>
+</div>
+<div class="page-data">	
+	<form id="items-form">
+    <table width="100%" border="0" cellspacing="0" class="table-data table">
+    <tbody>
+    	<tr>
+    		<th class="w-50">ID</th>
+    		<th class="w-200">项目名称</th>
+    		<th class='w-250'>施工地址</th>
+    		<th class="w-200">施工小区</th>
+    		<th class="w-150">所在城市</th>
+    		<th class='w-100'>装修面积</th>
+    		<th class="w-50">装修费用(RMB)</th>
+    		<th class='w-150'>安防智能公司</th>
+    		<th class="w-100">监理姓名</th>
+    		<th class="w-100">业主姓名</th>
+    		<th class="w-100">添加时间</th>
+    		<th class="w-150">操作</th>
+    	</tr>
+    	<{foreach $items as $v}>
+        <tr>
+       		<td class="w-100"><{$v['site_id']}></td>
+    		<td class="w-100"><{$v['title']}></td>
+    		<td class='w-250'><{$v['addr']}></td>
+    		<td class="w-100"><{$v['home_name']}></td>
+    		<td><{$v['city_name']}><{$v['area_name']}></td>
+    		<td class='w-100'><{$v['house_mj']}></td>
+    		<td class="w-50"><{$v['price']}></td>
+    		<td><{$v['company']}></td>
+    		<td class="w-50"><{foreach $zxpm as $pz}><{if $pz['supervist_id']==$v['zxpm_id']}><{$pz['name']}><{/if}><{/foreach}></td>
+    		<td><{$v['custom']}></td>
+    		<td class="w-100"><{$v['dateline']|format:'Y年m月d日 H:i:s'}></td>
+			<td>
+				<a href="?pm/index-progress-<{$v['site_id']}>.html" class="button" title="查看">施工进度</a>
+				<a href="?pm/index-edpm-<{$v['site_id']}>.html" title="修改" class="button">修改</a>
+				<a href="?pm/index-rmpm-<{$v['site_id']}>.html" mini-act="删除" mini-confirm="确定要删除吗？" title="删除" class="button">删除</a>
+			</td>
+		</tr>  
+		<{/foreach}> 
+	</tbody>
+	</table>
+	</div>
+</div>
+<{include file="admin:common/footer.html"}>

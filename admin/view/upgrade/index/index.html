@@ -1,0 +1,50 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0" >
+      <tr>
+        <td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+        <th><{$MOD.title}></th>
+        <td align="right"></td>
+        <td width="15"></td>
+      </tr>
+    </table>
+</div>
+<div class="page-data">
+<table width="100%" border="0" cellspacing="0" class="table-data form">
+
+
+ <tr>
+     <th>补丁名称：</th>
+        <td><{$data.patch_name}></td>
+    </tr>
+    <tr>
+        <th>版本：</th>
+        <td>
+            <{$data.version}>
+        </td>
+    </tr><tr>
+        <th>发布时间：</th>
+        <td>
+            <{date('Y-m-d H:i:s',$data['dateline'])}>
+        </td>
+    </tr>
+    <tr>
+                    <th>说明：</th>
+                    <td>
+                        <{nl2br($data['content'])}>
+                    </td>
+                </tr>
+                <tr>
+                     <th>操作：</th>
+                    <td>
+                        <a style="color: red;" href="?upgrade/index-download.html&patch_id=<{$data.patch_id}>">立刻升级</a>
+                        <code>升级前请做好备份</code>
+                    </td>
+                </tr>
+
+
+
+</table>
+</div>
+
+<{include file="admin:common/footer.html"}>

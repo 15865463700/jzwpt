@@ -1,0 +1,7 @@
+<{foreach $data.items as $item}>
+	<a href="/ask/<{$item.ask_id}>.html" class="seca_bdl" target="_blank">
+		<img src="/attachs/<{$item.thumb}>" alt="<{$item.title}>" width="260" height="246">
+		<span class="seca_bdl_info ect"><{$item.title}></span>
+		<span class="ie_bg"></span>
+	</a>
+<{/foreach}>

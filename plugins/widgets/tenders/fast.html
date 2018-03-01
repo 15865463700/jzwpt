@@ -1,0 +1,22 @@
+<div class="mb10 zbform">
+    <span style="font-size:20px;font-weight:600;"><{$data.title|default:"免费装修招标"}></span>
+    <form action="<{link ctl='tenders:save' http="ajax"}>" mini-form="fast-tenders" method="post">
+        <input type="hidden" name="data[from]" value="<{$data.from|default:'TZX'}>" />
+        <input type="text" name="data[contact]" class="text full" placeholder="请输入您的姓名" />
+        <input type="text" name="data[mobile]" class="text full" placeholder="请输入您的手机号码" />
+        <{widget id="data/region" city_id=$data.city_id|default:$request.city_id class="text short"}>
+        <{if $CONFIG.access.verifycode.tender}>
+         <input class="text short lt" type="text" name="verifycode" placeholder="请输入验证码"/><img verify="#<{$widget.HASH}>" src="/index.php?magic-verify&_=<{$pager.dateline}>" id="<{$widget.HASH}>" class="yz_pic rt"/>
+        <{/if}>
+		<div class="cl"></div>
+        <p class="ico_btn">
+            <input type="submit" value="免费申请" class="btn btn_sub_apply" />
+            <span class="ico_list"></span>
+        </p>
+    </form>
+    <script>
+	$("[verify]").click(function(){
+		$($(this).attr("verify")).attr("src", "/index.php?magic-verify&_"+Math.random());
+	});
+	</script>
+</div>

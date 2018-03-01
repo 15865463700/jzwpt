@@ -1,0 +1,42 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+        <tbody><tr>
+            <td width="30" align="right"><img src="http://hf.v6.jhcms.cn/admin/images/main-h5-ico.gif" alt=""></td>
+            <th>项目列表</th>
+            <td align="right">
+                <a class="button" onclick="history.go(-1)">返回</a>
+                <a href="?pm/index-addprogress-<{$site_id}>.html" ini-width="450" class="button" title="添加项目">添加施工进度</a>&nbsp;&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+    </tbody></table>
+</div>
+<div class="page-data"> 
+    <form id="items-form">
+    <table width="100%" border="0" cellspacing="0" class="table-data table">
+    <tbody>
+        <tr>
+            <th class="w-50">ID</th>
+            <th class='w-250'>现场截图</th>
+            <th class='w-250'>施工描述</th>
+            <th class="w-200">发布时间</th>
+            <th class="w-150">操作</th>
+        </tr>
+        <{foreach $items as $v}>
+        <tr>
+            <td class="w-50"><{$v['progress_id']}></td>
+            <td><img src="<{$v['attach']}>" width='120' height='60'/></td>
+            <td class='w-250'><{$v['content']}></td>
+            <td class='w-250'><{$v['dateline']|format:'Y年m月d日 H:i:s'}></td>
+            <td>
+                <a href="?pm/index-editprogress-<{$site_id}>-<{$v['progress_id']}>.html" title="修改" class="button">编辑</a>
+                <a href="?pm/index-rmprogress-<{$v['progress_id']}>.html" mini-act="删除" mini-confirm="确定要删除吗？" title="删除" class="button">删除</a>
+            </td>
+        </tr>  
+        <{/foreach}> 
+    </tbody>
+    </table>
+    </div>
+</div>
+<p class="s-50"></p>
+</body></html>

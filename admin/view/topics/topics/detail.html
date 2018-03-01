@@ -1,0 +1,51 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0" >
+      <tr>
+        <td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+        <th><{$MOD.title}></th>
+        <td align="right"><{link ctl="topics/topics:index" priv="hidden" class="button"}></td>
+        <td width="15"></td>
+      </tr>
+    </table>
+</div>
+<div class="page-data"><form action="?topics/topics-edit.html" mini-form="topics-form" method="post" ENCTYPE="multipart/form-data">
+<table width="100%" border="0" cellspacing="0" class="table-data form">
+<input type="hidden" name="topics_id" value="<{$detail.topics_id}>"/>
+<div class="page-data"><table width="100%" border="0" cellspacing="0" class="table-data form">
+<tr><th>用户ID：</th><td><{$detail.uid}></td></tr>
+<tr><th>姓名：</th><td><{$detail.name}></td></tr>
+<tr><th>银行卡：</th><td><{$detail.card}></td></tr>
+<tr><th>学历：</th><td><{$education[$detail.education].title}></td></tr>
+<tr><th>婚姻状况：</th><td><{$marriage[$detail.marriage].title}></td></tr>
+<tr><th>地址：</th><td><{$detail.addr}></td></tr>
+<tr><th>工作单位：</th><td><{$detail.work}></td></tr>
+<tr><th>单位地址：</th><td><{$detail.c_addr}></td></tr>
+<tr><th>单位电话：</th><td><{$detail.c_mobile}></td></tr>
+<tr><th>担任职务：</th><td><{$detail.position}></td></tr>
+<tr><th>家庭联系人：</th><td><{$detail.home_person}></td></tr>
+<tr><th>关系：</th><td><{$home[$detail.home_relationship].title}></td></tr>
+<tr><th>联系手机：</th><td><{$detail.home_phone}></td></tr>
+<tr><th>其他联系人：</th><td><{$detail.orter_person}></td></tr>
+<tr><th>关系：</th><td><{$other[$detail.orter_relationship].title}></td></tr>
+<tr><th>联系手机：</th><td><{$detail.orter_phone}></td></tr>
+<tr><th>身份证正面：</th><td><img src="<{$pager.img}>/<{$detail.photo1}>" class="wh-200" /></td></tr>
+<tr><th>身份证反面：</th><td><img src="<{$pager.img}>/<{$detail.photo2}>" class="wh-200" /></td></tr>
+<tr><th>手持身份证：</th><td><img src="<{$pager.img}>/<{$detail.photo3}>" class="wh-200" /></td></tr>
+<tr><th>开户银行：</th><td><{$detail.bank}></td></tr>
+<tr><th>银行卡号：</th><td><{$detail.bank_card}></td></tr>
+<tr><th>银行预留手机号：</th><td><{$detail.mobile}></td></tr>
+<tr><th>创建时间：</th><td><{$detail.dateline|format}></td></tr>
+
+<tr>
+	<th>审核：</th>
+	<td>
+		<label><input type="radio" name="data[audit]" <{if $detail.audit}>checked="checked"<{/if}> value="1"/>发布</label>&nbsp;&nbsp;
+		<label><input type="radio" name="data[audit]" <{if empty($detail.audit)}>checked="checked"<{/if}> value="0"/>待审</label>
+	</td>
+</tr>
+<tr><th>备注：</th><td><input type="text" name="data[remark]" value="<{$detail.remark|default:''}>" class="input w-300"/></td></tr>
+    <tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+</table></div>
+
+<{include file="admin:common/footer.html"}>

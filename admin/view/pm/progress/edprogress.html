@@ -1,0 +1,68 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="30" align="right"><img src="http://hf.v6.jhcms.cn/admin/images/main-h5-ico.gif" alt=""></td>
+        <th>编辑项目进度</th>
+        <td align="right"><a class="button" onclick="history.go(-1)">返回</a></td>
+        <td width="15"></td>
+      </tr>
+    </tbody></table>
+</div>
+<div class="page-data">
+<form action="?pm/index-editprogress-<{$site_id}>-<{$progress_id}>.html" mini-form="designer-form" method="post" enctype="multipart/form-data">
+<input type="hidden" name="account[from]" value="designer">
+<table width="100%" border="0" cellspacing="0" class="table-data form">
+    <tbody>
+    <tr>
+        <th><span class="red">*</span>所属项目：</th>
+        <td>
+            <input type="hidden" name="data[site_id]" value="<{$site_id}>" class="input w-400" id="pm_comapny_id">
+            <input type="text"   value="<{$detail['title']}>" class="input w-400" id="pm_company_name" readonly="true" />
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>公司名称：</th>
+        <td>
+            <input type="hidden" name="data[company_id]" value="<{$detail['company_id']}>" class="input w-400" id="pm_comapny_id">
+            <input type="text" value="<{$detail['company']}>" class="input w-400" readonly="true" />
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>进度描述(可编辑)：</th>
+        <td>
+            <textarea name='data[content]'><{$extra['content']}></textarea>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>施工阶段：</th>
+        <td>
+            <select name="data[step]">
+                <{foreach $pm_pro as $key=>$pm}>
+                    <option value='<{$key}>' <{if $key==$extra['step']}>selected='seelcted'<{/if}>><{$pm}></option>
+                <{/foreach}>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>添加附件：</th>
+        <td>
+            <input type="file" name='attach' class="input w-400" />
+            <{if $extra['attach']}>
+                <img src="<{$extra['attach']}>" width='80' height='80'/>
+            <{/if}>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>发布时间：</th>
+        <td>
+            <input type="text" value="<{date('Y年m月d日 H:i:s',time())}>" class="input w-400" readonly="true" />
+        </td>
+    </tr>
+    <tr><th></th>
+        <td><input type="submit" class="bt-big" value="提交数据"></td>
+    </tr>
+</tbody></table>
+</form>
+</div>
+<{include file="admin:common/footer.html"}>

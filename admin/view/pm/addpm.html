@@ -1,0 +1,112 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td width="30" align="right"><img src="http://hf.v6.jhcms.cn/admin/images/main-h5-ico.gif" alt=""></td>
+        <th>添加项目</th>
+        <td align="right"><a href="?pm/index-index.html" priv="hidden" class="button">项目列表</a></td>
+        <td width="15"></td>
+      </tr>
+    </tbody></table>
+</div>
+<div class="page-data">
+<form action="?pm/index-addpm.html" mini-form="designer-form" method="post" enctype="multipart/form-data">
+<input type="hidden" name="account[from]" value="designer">
+<table width="100%" border="0" cellspacing="0" class="table-data form">
+    <tbody>
+    <tr>
+        <th><span class="red">*</span>公司名称：</th>
+        <td>
+           <input type="hidden" name="data[company_id]" value="" class="input w-400" id="pm_company_id">
+            <input type="text"  name="data[company]" class="input w-400" id="pm_company_name" readonly="true" />
+            <a href="?company/company-dialog.html" mini-select="#pm_company_id,#pm_company_name/N/选择安防智能公司" class="button">选择公司</a>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>工地名称：</th>
+        <td>
+            <input type="text" name="data[title]" value="" class="input w-400">
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>工程类型：</th>
+        <td>
+            <select class="w-200" name="data[type_id]">
+                <{foreach $pm_type as $key=>$pm}>
+                <option value="<{$key}>"><{$pm}></option>
+                <{/foreach}>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <th><span class="red">*</span>城市选择：</th>
+        <td>
+           <{widget id="data/region" city_id=$detail.city_id}>
+        </td>
+    </tr>
+    <tr>
+        <th>施工地址：</th>
+        <td><input type="text" name="data[addr]" value="" class="input w-400"></td></tr>
+    <tr>
+    <tr>
+        <th>小区名称：</th>
+        <td><input type="text" name="data[home_name]" value="" class="input w-300"></td>
+    </tr>
+    <tr>
+        <th>施工面积：</th>
+        <td>
+            <input type="text" name="data[house_mj]" value="0" class="input w-300"><span> ㎡</span>
+        </td>
+    </tr>    
+    <tr>
+        <th>装修报价：</th>
+        <td>
+            <input type="text" name="data[price]" value="0" class="input w-300"><span> RMB</span>
+        </td>
+    </tr> 
+    <tr>
+        <th>项目监理：</th>
+        <td>
+            <select class="w-200" name="data[zxpm_id]">
+                <{foreach $zxpm as $zv}>
+                    <option value="<{$zv['supervist_id']}>"><{$zv['name']}></option>
+                <{/foreach}>
+            </select>
+        </td>
+    </tr> 
+    <tr>
+        <th>业主姓名：</th>
+        <td>
+            <input type="hidden" name="data[custom_id]" id="select_member_uid_id" />
+            <input type="text" name="data[custom]" id="select_member_uid_name" class="input w-300" readonly="true" />
+            <a href="?member/member-dialog-member.html" mini-select="#select_member_uid_id,#select_member_uid_name/N/选择用户" title="选择用户" class="button">选择用户</a>
+        </td>
+    </tr>
+    <tr>
+        <th>装修进度：</th>
+        <td>
+            <{foreach $pm_pro as $key=>$v}>
+                <label><input type='radio' name='data[status]' value='<{$key}>' <{if $key==1}>checked='true'<{/if}>/><{$v}></label>
+            <{/foreach}>
+        </td>
+    </tr>
+    <tr>
+        <th>开始时间：</th>
+        <td>
+            <input type="text" name="data[starttime]" value="<{date('Y年m月d日 H:i:s',time())}>" class="input w-300 Wdate" readonly="true" date='end_sign'>
+        </td>
+    </tr>
+    <tr>
+        <th>结束时间：</th>
+        <td>
+          <input type="text" name="data[endtime]" value="<{date('Y年m月d日 H:i:s',time())}>" class="input w-300 Wdate" readonly="true" date='end_sign'>
+        </td>
+    </tr>
+    <tr><th></th>
+        <td><input type="submit" class="bt-big" value="提交数据"></td>
+    </tr>
+   
+</tbody></table>
+</form>
+</div>
+<{include file="admin:common/footer.html"}>

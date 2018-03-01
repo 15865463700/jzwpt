@@ -1,0 +1,66 @@
+jh_jtyjy_case
+
+show create table jh_jtyjy_case_attr
+
+show create table jh_jtyjy_case_comment;
+jh_jtyjy_case_like
+jh_jtyjy_case_photo 
+
+
+
+
+CREATE TABLE `jh_xw` (
+  `xw_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `city_id` int(10) DEFAULT '0',
+  `uid` mediumint(8) DEFAULT '0',
+  `company_id` mediumint(8) DEFAULT '0',
+  `home_name` varchar(80) DEFAULT '',
+  `home_id` mediumint(8) DEFAULT '0',
+  `huxing` varchar(150) DEFAULT '',
+  `huxing_id` int(10) DEFAULT '0',
+  `title` varchar(150) DEFAULT '',
+  `photo` varchar(150) DEFAULT '',
+  `size` mediumint(8) DEFAULT '0',
+  `views` mediumint(8) DEFAULT '0',
+  `likes` mediumint(8) DEFAULT '0',
+  `seo_title` varchar(150) DEFAULT '',
+  `seo_keywords` varchar(255) DEFAULT '',
+  `seo_description` varchar(255) DEFAULT '',
+  `intro` varchar(1024) DEFAULT NULL,
+  `photos` mediumint(8) DEFAULT '0',
+  `lastphotos` varchar(150) DEFAULT '',
+  `lasttime` int(10) DEFAULT '0',
+  `orderby` smallint(6) DEFAULT '50',
+  `audit` tinyint(1) DEFAULT '0',
+  `closed` tinyint(1) DEFAULT '0',
+  `clientip` char(15) DEFAULT '0.0.0.0',
+  `dateline` int(1) DEFAULT '0',
+  PRIMARY KEY (`case_id`),
+  KEY `__INDEX1` (`city_id`,`uid`,`company_id`,`home_id`),
+  KEY `__INDEX2` (`lasttime`,`orderby`,`audit`,`closed`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `jh_xw_attr` (
+  `xw_id` int(10) NOT NULL DEFAULT '0',
+  `attr_id` smallint(6) NOT NULL DEFAULT '0',
+  `attr_value_id` mediumint(8) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`case_id`,`attr_value_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE `jh_xw_comment` (
+  `comment_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `city_id` int(10) DEFAULT NULL,
+  `xw_id` mediumint(8) DEFAULT '0',
+  `uid` mediumint(8) DEFAULT '0',
+  `content` varchar(1024) DEFAULT '',
+  `audit` tinyint(1) DEFAULT '0',
+  `clientip` varchar(15) DEFAULT '',
+  `dateline` int(10) DEFAULT '0',
+  PRIMARY KEY (`comment_id`),
+  KEY `__INDEX` (`city_id`,`case_id`,`uid`,`audit`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+jh_xw_like
+jh_xw_photo 
+
+

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+<title><{if $tpl_title}><{$tpl_title}><{else}>会员管理中心<{/if}></title>
+<link rel="stylesheet" href="/themes/default/weixin/static/css/frozen.css">
+<link rel="stylesheet" href="/themes/default/weixin/static/css/icon-full.css">
+<link rel="stylesheet" href="/themes/default/weixin/static/css/common.css">
+<link rel="stylesheet" href="/themes/default/weixin/static/css/append.css">
+<script type="text/javascript">
+// 指定js基础路径，会在require动态加载其他js时引用
+window._js_path = '<{$pager.res}>/weixin/script';
+window._append_parent = 'append_parent';
+</script>
+<script type="text/javascript" src="<{$pager.res}>/weixin/script/config.js"></script>
+<script type="text/javascript" src="<{$pager.res}>/weixin/script/require.js"></script>
+<script type="text/javascript" src="<{$pager.res}>/weixin/script/region.js"></script>
+</head>

@@ -1,0 +1,15 @@
+<div class="mb10 area">
+    <h3 class="side_tit"><{$data.title}></h3>
+    <ul class="pding paihang">
+        <{foreach $data.list as $k=>$item}>
+        <li>
+            <span class="lt">
+                <{if $data.key>0}>
+                <font class="paihang_num<{if $k<=3 }> ph_num_cl <{/if}>"><{$k+1}></font>
+                <{/if}>
+                <a href="<{if $data.t==1}>/zxgl/<{$item.article_id}>.html<{elseif $data.t==3}>/xw/<{$item.article_id}>.html<{else}>/xw/<{$item.article_id}>.html<{/if}>"><{$item.title|cutstr:$data.strlen}></a>
+            </span>
+        </li>
+        <{/foreach}>
+    </ul>
+</div>

@@ -1,0 +1,19 @@
+<{foreach $data.attrs as $attr}>
+<tr>
+	<th><{$attr.title}>：</th>
+	<td<{if $data.colspan}> colspan="<{$data.colspan}>"<{/if}>>
+		<{foreach $attr.values as $k=>$v}>
+		<{if $attr.multi=='Y'}>
+			<{if in_array($v.attr_value_id, $data.value)}>
+				&nbsp;<{$v.title}>
+			<{/if}>
+		<{else}>
+			<{if in_array($v.attr_value_id, $data.value)}>
+				&nbsp;<{$v.title}>
+			<{/if}>
+		<{/if}>
+		<{/foreach}>
+		<div style="clear:both;"></div>
+	</td>
+</tr>
+<{/foreach}>

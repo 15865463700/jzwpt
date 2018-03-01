@@ -1,0 +1,65 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0" >
+      <tr>
+        <td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+        <th><{$MOD.title}></th>
+        <td align="right"><{link ctl="jfproduct/product:index" priv="hidden" class="button"}></td>
+        <td width="15"></td>
+      </tr>
+    </table>
+</div>
+<div class="page-data"><form action="?jfproduct/product-create.html" mini-form="jfproduct-form" method="post" >
+<input type="hidden" name="data[cat_id]" value="<{$pager.cat_id}>" />
+<table width="100%" border="0" cellspacing="0"  class="table-data form" id="table-info">
+<tr> <th>分类：</th><td><select name="data[cat_id]" class="w-150"><{widget id="shop/cate" parent_id=0}></select></td></tr>
+
+<tr><th><span class="red">*</span>名称：</th>
+    <td><input type="text" name="data[name]" value="<{$detail.name|default:''}>" class="input w-300"/><span class="tip-comment">商品名称</span></td>
+</tr>
+<tr>
+    <th>图片：</th>
+    <td>
+        <input type="text" name="data[photo]" value="<{$detail.photo}>" <{if $detail.photo}>photo="<{$pager.img}>/<{$detail.photo}>"<{/if}> class="input w-300" />&nbsp;&nbsp;&nbsp;
+        <input type="file" name="data[photo]" class="input w-100" />
+    </td>
+</tr>
+<tr><th><span class="red">*</span>积分：</th><td><input type="text" name="data[jfprice]" value="<{$detail.jfprice|default:''}>" class="input w-300"/></td></tr>
+<tr><th><span class="red">*</span>商品描述：</th><td><textarea name="data[info]" kindeditor="full" style="width:800px;height:350px;"><{$detail.info}></textarea><br /></td></tr>
+<tr><th>库存：</th><td><input type="text" name="data[kucun]" value="<{$detail.kucun|default:'0'}>" class="input w-50"/></td></tr>
+<tr><th>排序：</th><td><input type="text" name="data[orderby]" value="<{$detail.orderby|default:'50'}>" class="input w-50"/></td></tr>
+<tr>
+	<th>审核：</th>
+	<td>
+       
+            <label><input type="radio" name="data[audit]" checked="checked" value="1"/>发布</label>
+            <label><input type="radio" name="data[audit]" value="0"/>待审</label>
+        
+	</td>
+</tr>
+<tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+</table>
+</form></div>
+<script src="<{$pager.res}>/swfupload/swfupload.js" type="text/javascript"></script>
+<script src="<{$pager.res}>/script/kt.upload.js" type="text/javascript"></script>
+<script type="text/javascript" src="<{$pager.res}>/kindeditor/kindeditor.js"></script>
+<script type="text/javascript">
+(function(K, $){
+$("div.page-data").tabs();
+var editor = KindEditor.create('textarea[kindeditor]', {uploadJson : '?magic/upload-editor.html', extraFileUploadParams:{OATOKEN:"<{$OATOKEN}>"}});
+$("[name='data[sale_type]']").click(function(){
+    if($(this).val() == 2){
+        $("#tr_sale_sku").hide();
+        $("#tr_sale_time").show();
+    }else if($(this).val() == 1){
+        $("#tr_sale_time").hide();
+        $("#tr_sale_sku").show();
+    }else{
+        $("#tr_sale_sku").hide();
+        $("#tr_sale_time").hide();
+    }
+});
+$("[name='data[sale_type]']:checked").trigger("click");
+})(window.KT, window.jQuery);
+</script>
+<{include file="admin:common/footer.html"}>

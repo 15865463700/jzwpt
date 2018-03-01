@@ -1,0 +1,98 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0" >
+        <tr>
+            <td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+            <th><{$MOD.title}></th>
+            <td align="right">
+                <!--< {link ctl="zxb/zxb:create" class="button" title="添加"} >&nbsp;&nbsp;&nbsp;-->
+                <{link ctl="zxb/zxb:so" load="mini:搜索内容" width="mini:500" class="button" title="搜索"}>
+            </td>
+            <td width="15"></td>
+        </tr>
+    </table>
+</div>
+<div class="page-data">
+    <form id="items-form">
+        <table width="100%" border="0" cellspacing="0" class="table-data table">
+            <tr><th class="w-50">ID</th><th class="w-50">城市ID</th><th class="w-50">用户</th>
+                <th class="w-50">隶属公司</th><th>联系人</th><th>联系电话</th>
+                <th class="w-50">状态</th>
+                <th>备注</th><th>创建IP</th><th>查看招标</th><th class="w-100">创建时间</th><th class="w-150">操作</th></tr>
+            <{foreach $items as $item}>
+            <tr><td><label><input type="checkbox" value="<{$item.zxb_id}>" name="zxb_id[]" CK="PRI"/><{$item.zxb_id}><label></td>
+                <td><{$cityList[$item.city_id].city_name}></td>
+                <td><a href='?ctl=member/member&SO[uid]=<{$item.uid}>'><{$member_list[$item.uid].uname}></a></td>
+                <td><a href='?ctl=company/company&SO[company_id]=<{$item.company_id}>'><{$company_list[$item.company_id].title}></a></td>
+                <td><{$item.contact}></td>
+                <td><{$item.mobile}></td>
+                <td>
+                    <{if $item.from=='gz'}>
+                        <{if $item.status<2}>
+                        <{elseif $item.status<3}>
+                            确认公司
+                        <{elseif $item.status<4}>
+                            合同签订
+                        <{elseif $item.status<$item.cfg.step+4}>
+                            <{if $item.cfg.step>1}>第<{$item.status-3}>期<{/if}>施工验收
+                        <{elseif $item.status==$item.cfg.step+4}>
+                            竣工返款
+                        <{elseif $item.status==$item.cfg.step+5}>
+                            交易完成
+                        <{else}>
+                            状态错误
+                        <{/if}>
+                    <{else}>
+                        <{if $item.status<7}>
+                        <{if $item.dealline>0}>
+                        <{if $item.back==0}>
+                        竣工后返款(立即返款,返款时间：<{$item.dealline|format}>)
+                        <{elseif $item.back==7}>
+                        竣工后返款(一周后返款,返款时间：<{$item.dealline|format}>)
+                        <{elseif $item.back==30}>
+                        竣工后返款(一个月后返款,返款时间：<{$item.dealline|format}>)
+                        <{elseif $item.back==10000000}>
+                        竣工后返款(拒绝返款)
+                        <{else}>
+                        <{$status[$item.status]}>
+                        <{/if}>
+                        <{else}>
+                        <{$status[$item.status]}>
+                        <{/if}>
+                        <{else}>
+                        <{$status[$item.status]}>
+                        <{/if}>
+                    <{/if}>
+
+                </td>
+                <td><{$item.comment|cutstr:30}></td>
+                <td><{$item.clientip}></td>
+                <td><{if $item.tenders_id}><a href='?ctl=tenders/tenders&SO[tenders_id]=<{$item.tenders_id}>'>查看招标</a><{/if}></td>
+                <td><{$item.dateline|format}></td>
+                <td>
+                    <{if $item.from=='gz'}>
+                    <{link ctl="zxb/gzlc:index" args=$item.zxb_id title="管理流程" class="button"}>
+                    <{link ctl="zxb/gz:edit" args=$item.zxb_id title="修改" class="button"}>
+                    <{else}>
+                    <{link ctl="zxb/step:index" args=$item.zxb_id title="管理流程" class="button"}>
+                    <{link ctl="zxb/zxb:edit" args=$item.zxb_id title="修改" class="button"}>
+                    <{/if}>
+                    <{link ctl="zxb/zxb:delete" args=$item.zxb_id act="mini:删除" confirm="mini:确定要删除吗？" title="删除" class="button"}>
+                </td>
+            </tr>
+            <{foreachelse}>
+            <tr><td colspan="20"><p class="text-align tip-notice">没有数据</p></td></tr>
+            <{/foreach}>
+        </table>
+    </form>
+    <div class="page-bar">
+        <table>
+            <tr>
+                <td class="w-100"><label><input type="checkbox" CKA="PRI"/>&nbsp;&nbsp;全选</label></td>
+                <td colspan="10" class="left"><{link ctl="zxb/zxb:delete" type="button" submit="mini:#items-form" confirm="mini:确定要批量删除选中的内容吗?" priv="hide" value="批量删除"}>&nbsp;&nbsp;&nbsp;<{link ctl="zxb/zxb:doaudit" type="button" submit="mini:#items-form" confirm="mini:确定要批量审核选中的内容吗?" priv="hide" value="批量审核"}></td>
+                <td class="page-list"><{$pager.pagebar}></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<{include file="admin:common/footer.html"}>

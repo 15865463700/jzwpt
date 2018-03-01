@@ -1,0 +1,38 @@
+<{include file="admin:common/header.html"}>
+<div class="page-title">
+    <table width="100%" align="center" cellpadding="0" cellspacing="0" >
+      <tr>
+        <td width="30" align="right"><img src="<{$pager.url}>/images/main-h5-ico.gif" alt="" /></td>
+        <th><{$MOD.title}></th>
+        <td align="right"><{link ctl="truste/truste:index" priv="hidden" class="button"}></td>
+        <td width="15"></td>
+      </tr>
+    </table>
+</div>
+<div class="page-data"><form action="?truste/truste-create.html" mini-form="truste-form" method="post" ENCTYPE="multipart/form-data">
+<table width="100%" border="0" cellspacing="0" class="table-data form">
+<tr><th>标题：</th><td><input type="text" name="data[title]" value="<{$detail.title|default:''}>" class="input w-300"/></td></tr>
+<tr><th class="w-100">城市：</th><td><{widget id="data/region" city_id=$CONFIG.site.city_id}></td></tr>
+<tr><th class="w-100"><span class="red">*</span>类型：</th><td><select name="data[from]"class="w-150"><{widget id="truste/from" value=$detail.from}></select></td></tr>
+<tr><th>会员：</th>
+    <td>
+        <input type="hidden" name="data[uid]" value="<{$detail.uid}>" id="select_member_uid_id" />
+        <input type="text" value="<{$member.uname}>" id="select_member_uid_name" class="input w-300" readonly/>
+        <{link ctl="member/member:dialog" arg0="member" select="mini:#select_member_uid_id,#select_member_uid_name/N/选择用户" title="选择用户" class="button"}>
+    </td>
+</tr>
+<tr><th>联系人：</th><td><input type="text" name="data[contact]" value="<{$detail.contact|default:''}>" class="input w-300"/></td></tr>
+<tr><th><span class="red">*</span>手机号：</th><td><input type="text" name="data[mobile]" value="<{$detail.mobile|default:''}>" class="input w-300"/></td></tr>
+
+
+<tr><th>图像：</th><td><input type="file" name="photo" class="input w-300" />
+<tr><th>地址：</th><td><input type="text" name="data[addr]" value="<{$detail.addr|default:''}>" class="input w-500"/></td></tr>
+<tr><th>业主要求：</th><td><textarea name="data[comment]" class="textarea"><{$detail.comment}></textarea><br /></td></tr>
+<tr><th>招标售价：</th><td><input type="text" name="data[gold]" value="<{$detail.gold|default:''}>" class="input w-100"/></td></tr>
+<tr><th>最大投标数：</th><td><input type="text" name="data[max_look]" value="<{$detail.max_look|default:'3'}>" class="input w-100"/></td></tr>
+<tr><th>已投标数：</th><td><input type="text" name="data[looks]" value="<{$detail.looks|default:''}>" class="input w-100"/><span class="tip-comment">已经有几家查看了</span></td></tr>
+<tr><th>浏览数：</th><td><input type="text" name="data[views]" value="<{$detail.views|default:''}>" class="input w-100"/></td></tr>
+<tr><th class="clear-th-bottom"></th><td class="clear-td-bottom" colspan="10"><input type="submit" class="bt-big" value="提交数据" /></td></tr>
+</table>
+</form></div>
+<{include file="admin:common/footer.html"}>

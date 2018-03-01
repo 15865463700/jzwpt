@@ -1,0 +1,5 @@
+<{foreach $data.attrs as $cat1}>
+ <{foreach $cat1.values as $value}>
+ 	<a href="<{link ctl='case:items'}>" target="_blank"><{$value.title}></a>
+ <{/foreach}>
+<{/foreach}>
